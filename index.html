@@ -1,0 +1,385 @@
+<!doctype html>
+<!-- 雑に1時間くらいで作ったから Vue.js ちゃんと使いたいぞい -->
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>まねき計算機 for 2ndアルバム（タイトル未定）</title>
+  </head>
+  <body>
+    <h1>まねき計算機 for 2ndアルバム（タイトル未定）</h1>
+
+    <div class="container">
+      <h2>CD購入枚数</h2>
+      <div class="row">
+        <div class="col-xs-6">
+          通常盤
+        </div>
+        <div class="col-xs-3">
+          3100円
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg cd-decrement" data-cdtype="cd1">-</button>
+        </div>
+        <div class="col-xs-1 cd-count" data-cdtype="cd1">
+          0枚
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg cd-increment" data-cdtype="cd1">+</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+          初回限定版 Type-B
+        </div>
+        <div class="col-xs-3">
+          3900円
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg cd-decrement" data-cdtype="cd2">-</button>
+        </div>
+        <div class="col-xs-1 cd-count" data-cdtype="cd2">
+          0枚
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg cd-increment" data-cdtype="cd2">+</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+          初回限定版 Type-B
+        </div>
+        <div class="col-xs-3">
+          3900円
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg cd-decrement" data-cdtype="cd3">-</button>
+        </div>
+        <div class="col-xs-1 cd-count" data-cdtype="cd3">
+          0枚
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg cd-increment" data-cdtype="cd3">+</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+          合計
+        </div>
+        <div class="col-xs-3" id="cd-price-total">
+          0円
+        </div>
+        <div class="col-xs-1" id="cd-price-remainder" style="color:red;">
+        </div>
+        <div class="col-xs-1" id="cd-count-total">
+          0枚
+        </div>
+        <div class="col-xs-1">
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>特典券</h2>
+      <div class="row">
+        <div class="col-xs-8">
+          所持数
+        </div>
+        <div class="col-xs-4" id="tokuten-count">
+          0枚
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          使用数
+        </div>
+        <div class="col-xs-4" id="tokuten-used">
+          0枚
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          残り枚数
+        </div>
+        <div class="col-xs-4" id="tokuten-remainder">
+          0枚
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-xs-6">
+          全員ハイタッチ
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-decrement" data-cdtype="tokuten1_touch">-</button>
+        </div>
+        <div class="col-xs-1 tokutem-count" data-cdtype="tokuten1_touch">
+          0枚
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-increment" data-cdtype="tokuten1_touch">+</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-decrement" data-cdtype="tokuten">-</button>
+        </div>
+        <div class="col-xs-1 tokutem-count" data-cdtype="tokuten">
+          0枚
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-increment" data-cdtype="tokuten">+</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-decrement" data-cdtype="tokuten">-</button>
+        </div>
+        <div class="col-xs-1 tokutem-count" data-cdtype="tokuten">
+          0枚
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-increment" data-cdtype="tokuten">+</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-decrement" data-cdtype="tokuten">-</button>
+        </div>
+        <div class="col-xs-1 tokutem-count" data-cdtype="tokuten">
+          0枚
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-increment" data-cdtype="tokuten">+</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-decrement" data-cdtype="tokuten">-</button>
+        </div>
+        <div class="col-xs-1 tokutem-count" data-cdtype="tokuten">
+          0枚
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-increment" data-cdtype="tokuten">+</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-decrement" data-cdtype="tokuten">-</button>
+        </div>
+        <div class="col-xs-1 tokutem-count" data-cdtype="tokuten">
+          0枚
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-increment" data-cdtype="tokuten">+</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-decrement" data-cdtype="tokuten">-</button>
+        </div>
+        <div class="col-xs-1 tokutem-count" data-cdtype="tokuten">
+          0枚
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-increment" data-cdtype="tokuten">+</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-decrement" data-cdtype="tokuten">-</button>
+        </div>
+        <div class="col-xs-1 tokutem-count" data-cdtype="tokuten">
+          0枚
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-increment" data-cdtype="tokuten">+</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-decrement" data-cdtype="tokuten">-</button>
+        </div>
+        <div class="col-xs-1 tokutem-count" data-cdtype="tokuten">
+          0枚
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-increment" data-cdtype="tokuten">+</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-decrement" data-cdtype="tokuten">-</button>
+        </div>
+        <div class="col-xs-1 tokutem-count" data-cdtype="tokuten">
+          0枚
+        </div>
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-lg tokuten-increment" data-cdtype="tokuten">+</button>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script>
+(function() {
+
+  var cd_price = {
+    cd1: 3100,
+    cd2: 3900,
+    cd3: 3900
+  };
+  var cd_count = {
+    cd1: 0,
+    cd2: 0,
+    cd3: 0
+  };
+
+  var tokuten_rule = {
+    tokuten1_touch: 1,
+    tokuten1_lot: 1,
+    tokuten2: 2,
+    tokuten4_sign: 4,
+    tokuten4_cheki: 4,
+    tokuten5: 5,
+    tokuten6: 6,
+    tokuten7: 7,
+    tokuten9: 9,
+    tokuten10: 10
+  };
+
+  var tokuten_rule = {
+    tokuten1_touch: 1,
+    tokuten1_lot: 1,
+    tokuten2: 2,
+    tokuten4_sign: 4,
+    tokuten4_cheki: 4,
+    tokuten5: 5,
+    tokuten6: 6,
+    tokuten7: 7,
+    tokuten9: 9,
+    tokuten10: 10
+  };
+
+  var tokuten_count = {
+    tokuten1_touch: 0,
+    tokuten1_lot: 0,
+    tokuten2: 0,
+    tokuten4_sign: 0,
+    tokuten4_cheki: 0,
+    tokuten5: 0,
+    tokuten6: 0,
+    tokuten7: 0,
+    tokuten9: 0,
+    tokuten10: 0
+  };
+
+  const init = () => {
+    $(".cd-count").html("0枚");
+  };
+
+  const refresh = () => {
+    const total_price = cd_price["cd1"] * cd_count["cd1"] +
+                        cd_price["cd2"] * cd_count["cd2"] +
+                        cd_price["cd3"] * cd_count["cd3"];
+    $("#cd-price-total").html(total_price + "円");
+
+    const remainder = total_price % 1000;
+    if (remainder === 0) {
+      $("#cd-price-remainder").html("");
+    } else {
+      $("#cd-price-remainder").html(remainder + "円余る");
+    }
+
+    $("#cd-count-total").html(
+      (cd_count["cd1"] + cd_count["cd2"] + cd_count["cd3"]) + "枚"
+    );
+
+    $("#tokuten-count").html(Math.floor(total_price / 1000));
+
+  };
+
+  $(".cd-increment").click(function() {
+    var cdtype = $(this).data("cdtype");
+    if (cd_price[cdtype] === undefined) return;
+
+    cd_count[cdtype]++;
+    $("div[data-cdtype=" + cdtype + "].cd-count").html(cd_count[cdtype] + "枚");
+    
+    refresh();
+  });
+
+  $(".cd-decrement").click(function() {
+    var cdtype = $(this).data("cdtype");
+    if (cd_price[cdtype] === undefined) return;
+    if (cd_count[cdtype] < 1) return;
+
+    cd_count[cdtype]--;
+    $("div[data-cdtype=" + cdtype + "].cd-count").html(cd_count[cdtype] + "枚");
+    
+    refresh();
+  });
+
+
+  $(".tokuten-increment").click(function() {
+    var cdtype = $(this).data("cdtype");
+    if (tokuten_rule[cdtype] === undefined) return;
+
+    tokuten_count[cdtype]++;
+    $("div[data-cdtype=" + cdtype + "].tokuten-count").html(tokuten_count[cdtype] + "枚");
+    
+    refresh();
+  });
+
+
+
+  init();
+}());
+
+</script>
+
+
+  </body>
+</html>
